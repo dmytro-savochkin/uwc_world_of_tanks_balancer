@@ -20,5 +20,5 @@ PLATFORMS
 DEPENDENCIES
   haml
   json
-  rake (~> 10.1.1)
-  sinatra (~> 1.4.4)
+  rake
+  sinatra
