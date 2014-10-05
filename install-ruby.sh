@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 sudo apt-get -y install curl
 \curl -L https://get.rvm.io | bash -s stable --ruby
 sudo rvm install ruby-2.0.0-p576
