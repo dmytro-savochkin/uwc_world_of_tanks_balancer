@@ -1,0 +1,59 @@
+- matchup = []
+- @players_for_levels.map do |level, count|
+  - matchup.push(count.to_s + ' tanks of level ' + level.to_s)
+The supposed matchup is #{matchup.join(', ')} (for each side).
+
+- score_differences = []
+%table
+  %thead{:style => 'background-color:#ccc'}
+    %tr
+      %th{:rowspan => 3}
+      %th{:colspan => 2} Team 1
+      %th{:colspan => 2} Team 2
+      %th{:rowspan => 3} score difference
+    %tr
+      %th{:colspan => 2}= @clan_data[0][:id].to_s + '. ' + @clan_data[0][:name].to_s
+      %th{:colspan => 2}= @clan_data[1][:id].to_s + '. ' + @clan_data[1][:name].to_s
+    %tr
+      %th id
+      %th player data
+      %th id
+      %th player data
+  %tbody{:style => 'border:1px solid black'}
+    - (0...15).each do |player_id|
+      %tr
+        %td= (player_id+1).to_s
+
+        - [0, 1].each do |team_id|
+          - account_id = @teams[team_id][player_id][:id].to_s
+          - account_name = @teams[team_id][player_id][:name].to_s
+          - player_tank = @teams[team_id][player_id][:tank]
+          %td= account_id
+          %td
+            %div
+              name:
+              %strong= account_name.to_s
+            %div
+              tank id:
+              = player_tank['tank_id'].to_s
+            %div
+              tank level:
+              = player_tank['level'].to_s
+            %div
+              mark of mastery:
+              = player_tank['mark_of_mastery'].to_s
+            %div
+              max health:
+              = player_tank['max_health'].to_s
+            %div
+              damage: #{player_tank['gun_damage_min'].to_s}...#{player_tank['gun_damage_max'].to_s}
+              (#{player_tank['gun_damage_avg'].to_s})
+            %div
+              score:
+              = player_tank['score'].to_s
+        %td
+          - score_difference = @teams[1][player_id][:diff]
+          = score_difference.round(4).to_s
+          - score_differences.push score_difference
+
+Average difference in score is #{(score_differences.inject(&:+)/score_differences.count).round(4).to_s} (the smaller the better).
