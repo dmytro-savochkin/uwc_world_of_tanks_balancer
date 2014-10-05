@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sinatra-initializers'
 require 'json'
 require 'yaml'
 require 'haml'
