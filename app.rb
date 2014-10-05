@@ -16,7 +16,7 @@ configure do
 	set :server, 'webrick'
 end
 
-get '/balanced_teams' do
+get '/' do
 	@clan_data, @teams, @players_for_levels = Controllers::Balancers.new.get_balanced_teams
 	haml :balanced_teams
 end

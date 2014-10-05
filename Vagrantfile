@@ -11,7 +11,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	  vb.customize ["modifyvm", :id, "--memory", "2048"]
 	end
 
-	 config.vm.provision :shell, :path => "install-rvm.sh",  :args => "stable"
-     config.vm.provision :shell, :path => "install-ruby.sh", :args => "2.0.0"
-     config.vm.provision :shell, :path => "install-ruby.sh", :args => "2.0.0 rake sinatra haml json"
+    config.vm.provision :shell, :path => "install-ruby.sh"
 end
