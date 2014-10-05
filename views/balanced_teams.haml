@@ -20,7 +20,7 @@ The supposed matchup is #{matchup.join(', ')} (for each side).
       %th id
       %th player data
   %tbody{:style => 'border:1px solid black'}
-    - (0...15).each do |player_id|
+    - (0...@teams[0].length).each do |player_id|
       %tr
         %td= (player_id+1).to_s
 
